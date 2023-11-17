@@ -8,7 +8,7 @@
  * Return:0 on success, 1 on failure
  */
 
-int main(int pc, char **argv)
+int main(void)
 {
 	/* the prompt that is going to show up to the user*/
 	char *prompt = "#cisfun$ ";
@@ -18,11 +18,6 @@ int main(int pc, char **argv)
 	char *lineptr; /* to store the address of the buffer*/
 	size_t n = 0; /*Store the allocated size in bytes*/
 	ssize_t read_nchars;
-
-	/* declaring void variables because of the flags */
-	(void) pc;
-	(void) argv;
-
 	/* creating an infinite loop*/
 
 	while (1)
@@ -32,18 +27,10 @@ int main(int pc, char **argv)
 		/* check if the getline fuction failed or reached EOF or user use CTRL + D*/
 		if (read_nchars == -1)
 		{
-			if (feof(stdin)) /* Check for EOF */
-			{
-				printf("Exiting pasky shell...\n");
-				break; /* Exit the loop on EOF */
-			}
-			else
-			{
-				perror(argv[0]); /* Print an error message with the program */
-			       exit(EXIT_FAILURE); /* Exit with an error status */
-			}
+			printf("Exiting Pasky Shell....\n");
+			return (-1);
 		}
-		printf("%s\n", lineptr);
+		printf("%s", lineptr);
 		/* free up allocated memory */
 		free(lineptr);
 	}
