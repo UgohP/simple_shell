@@ -15,9 +15,11 @@ int main(void)
 
 	/*The getline function*/
 
-	char *lineptr; /* to store the address of the buffer*/
+	char *lineptr = 0; /* to store the address of the buffer*/
 	size_t n = 0; /*Store the allocated size in bytes*/
 	ssize_t read_nchars;
+
+	char **tokens;
 	/* creating an infinite loop*/
 
 	while (1)
@@ -31,6 +33,13 @@ int main(void)
 			return (-1);
 		}
 		printf("%s", lineptr);
+		tokens = line_split(lineptr);
+
+        	if (tokens[0] != NULL) {
+            		execmd(tokens);
+        	}
+
+        	free(tokens);
 		/* free up allocated memory */
 		free(lineptr);
 	}

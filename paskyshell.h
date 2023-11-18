@@ -13,4 +13,7 @@
 #define MAXCOM 1000 /* max number of letters to be supported */
 #define MAXLIST 100 /* max number of commands to be supported */
 
+char** line_split(char *lineptr);
+void execmd(char **args);
+
 #endif /* PASKYSHELL_H */
